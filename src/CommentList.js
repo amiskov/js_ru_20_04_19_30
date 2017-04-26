@@ -4,6 +4,7 @@ import Comment from './Comment'
 class CommentList extends Component {
     state = {
         show: false,
+        //зачем эта функция в стейте, ты ведь не собираешься ее менять
         text: () => {
             return this.state.show ? 'Hide comments' : 'Show comments'
         }
