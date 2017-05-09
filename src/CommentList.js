@@ -3,11 +3,7 @@ import Comment from './Comment'
 
 class CommentList extends Component {
     state = {
-        show: false,
-        //зачем эта функция в стейте, ты ведь не собираешься ее менять
-        text: () => {
-            return this.state.show ? 'Hide comments' : 'Show comments'
-        }
+        show: false
     };
 
     toggle = () => {
@@ -31,10 +27,14 @@ class CommentList extends Component {
             )
         });
 
+        const getText = () => {
+            return this.state.show ? 'Hide comments' : 'Show comments'
+        }
+
         return (
             <div className="comments">
                 <button onClick={this.toggle} className="comments__toggle">
-                    {this.state.text()} {comments.length}
+                    {getText()} {comments.length}
                 </button>
                 {this.state.show ?
                     <div className="comments__container">
