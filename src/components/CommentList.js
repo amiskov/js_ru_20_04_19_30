@@ -42,4 +42,3 @@ function CommentList(props) {
 // Их просто не экспортить. Это нормально. Не надо все пихать внутрь функции компонента.
 
 export default toggleOpen(CommentList);
-e

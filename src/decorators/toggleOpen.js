@@ -23,7 +23,8 @@ export default (OriginalComponent) => class DecoratedComponent extends React.Com
 
     toggleOpen = ev => {
         // если есть preventDefault в событии — вызываем
-        ev && ev.preventDefault && ev.preventDefault()
+        ev && ev.preventDefault && ev.preventDefault();
+        
         this.setState({
             isOpen: !this.state.isOpen
         })

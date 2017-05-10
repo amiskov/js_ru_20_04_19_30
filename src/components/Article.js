@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import CommentList from './CommentList'
-import toggleOpen from '../decorators/toggleOpen'
 import PropTypes from 'prop-types'
 
 class Article extends Component {
@@ -14,6 +13,15 @@ class Article extends Component {
         // from toggleOpen decorator
         toggleOpen: PropTypes.func,
         isOpen: PropTypes.bool
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('Updating...'); // будет обновлен дофига раз, т. к. перестраивается весь ДОМ
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps.isOpen, this.props.isOpen);
+        return nextProps.isOpen !== this.props.isOpen;
     }
 
     render() {
@@ -35,4 +43,4 @@ class Article extends Component {
     }
 }
 
-export default toggleOpen(Article)
+export default Article
