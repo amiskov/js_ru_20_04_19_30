@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
-export default (Sections) => class Accordion extends Component {
+export default Sections => class extends Component {
     state = {
         openSectionId: null
-    }
+    };
 
     render() {
         return (
@@ -17,7 +17,7 @@ export default (Sections) => class Accordion extends Component {
 
     toggleSection = id => ev => {
         this.setState({
-            openSectionId: (this.state.openSectionId == id) ? null : id
+            openSectionId: (this.state.openSectionId === id) ? null : id
         })
     }
 }

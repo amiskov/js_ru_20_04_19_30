@@ -3,16 +3,16 @@ import CommnetList from './CommentList'
 import PropTypes from 'prop-types'
 
 function Article(props) {
-    const {article, toggleOpen} = props
+    const {article, toggleOpen} = props;
 
     const getBody = () => {
         return props.isOpen && (
-            <div>
-                {props.article.text}
-                <CommnetList comments={props.article.comments}/>
-            </div>
-        )
-    }
+                <div>
+                    {props.article.text}
+                    <CommnetList comments={props.article.comments}/>
+                </div>
+            )
+    };
 
     return (
         <section>
@@ -30,9 +30,9 @@ Article.propTypes = {
         text: PropTypes.string,
         comments: PropTypes.array
     }),
-    //from toggleOpen decorator
+    //from parent/HOC
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func
-}
+};
 
 export default Article

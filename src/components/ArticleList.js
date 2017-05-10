@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Article from './Article'
-import Accordion from '../decorators/Accordion'
+import Accordion from '../decorators/accordion'
 
 function ArticleList(props) {
     const elements = props.articles.map(
@@ -9,11 +9,11 @@ function ArticleList(props) {
             <li key={article.id}>
                 <Article
                     article={article}
-                    isOpen={article.id == props.openSectionId}
+                    isOpen={article.id === props.openSectionId}
                     toggleOpen={props.toggleSection(article.id)}
                 />
             </li>
-    )
+    );
 
     return (
         <ul>
@@ -23,7 +23,9 @@ function ArticleList(props) {
 }
 
 ArticleList.propTypes = {
-    articles: PropTypes.array
-}
+    articles: PropTypes.array,
+    openSectionId: PropTypes.oneOfType([PropTypes.object, PropTypes.string]), // null or string
+    toggleSection: PropTypes.func
+};
 
 export default Accordion(ArticleList)
