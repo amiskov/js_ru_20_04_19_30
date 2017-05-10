@@ -1,35 +1,29 @@
 import React, {Component} from 'react'
-import Article from './Article'
 import PropTypes from 'prop-types'
+import Article from './Article'
+import Accordion from '../decorators/Accordion'
 
-export default class ArticleList extends Component {
-    state = {
-        openArticleId: null
-    }
+function ArticleList(props) {
+    const elements = props.articles.map(
+        article =>
+            <li key={article.id}>
+                <Article
+                    article={article}
+                    isOpen={article.id == props.openSectionId}
+                    toggleOpen={props.toggleSection(article.id)}
+                />
+            </li>
+    )
 
-    render() {
-        const elements = this.props.articles.map(
-            article =>
-                <li key={article.id}>
-                    <Article article={article}
-                         isOpen={article.id == this.state.openArticleId}
-                         toggleOpen={this.toggleArticle(article.id)}/>
-                </li>
-            )
-        return (
-            <ul>
-                {elements}
-            </ul>
-        )
-    }
-
-    toggleArticle = id => ev => {
-        this.setState({
-            openArticleId: id
-        })
-    }
+    return (
+        <ul>
+            {elements}
+        </ul>
+    )
 }
 
 ArticleList.propTypes = {
     articles: PropTypes.array
 }
+
+export default Accordion(ArticleList)
