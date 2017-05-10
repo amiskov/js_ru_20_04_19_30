@@ -3,7 +3,7 @@ import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 
 function Article(props) {
-    const {article, toggleOpen} = props;
+    const {article, toggleSection} = props;
 
     const getBody = () => {
         return props.isOpen && (
@@ -16,7 +16,7 @@ function Article(props) {
 
     return (
         <section>
-            <h2 onClick={toggleOpen}>
+            <h2 onClick={toggleSection}>
                 {article.title}
             </h2>
             {getBody()}
@@ -32,7 +32,7 @@ Article.propTypes = {
     }),
     //from parent/HOC
     isOpen: PropTypes.bool,
-    toggleOpen: PropTypes.func
+    toggleSection: PropTypes.func
 };
 
 export default Article
