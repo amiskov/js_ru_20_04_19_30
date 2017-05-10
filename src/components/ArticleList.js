@@ -6,12 +6,16 @@ export default class ArticleList extends Component {
     state = {
         openArticleId: null
     }
+
     render() {
-        const elements = this.props.articles.map(article => <li key={article.id}>
-            <Article article={article}
-                     isOpen={article.id == this.state.openArticleId}
-                     toggleOpen={this.toggleArticle(article.id)}/>
-        </li>)
+        const elements = this.props.articles.map(
+            article =>
+                <li key={article.id}>
+                    <Article article={article}
+                         isOpen={article.id == this.state.openArticleId}
+                         toggleOpen={this.toggleArticle(article.id)}/>
+                </li>
+            )
         return (
             <ul>
                 {elements}
