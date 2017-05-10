@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import CommnetList from './CommentList'
+import React from 'react'
+import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 
 function Article(props) {
@@ -9,7 +9,7 @@ function Article(props) {
         return props.isOpen && (
                 <div>
                     {props.article.text}
-                    <CommnetList comments={props.article.comments}/>
+                    <CommentList comments={props.article.comments}/>
                 </div>
             )
     };

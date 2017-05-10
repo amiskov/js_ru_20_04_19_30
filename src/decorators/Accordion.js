@@ -10,12 +10,12 @@ export default Sections => class extends Component {
             <Sections
                 {...this.props}
                 {...this.state}
-                toggleSection={this.toggleSection}
+                toggleSection={this.toggleSection.bind(this)}
             />
         )
     }
 
-    toggleSection = id => ev => {
+    toggleSection(id) {
         this.setState({
             openSectionId: (this.state.openSectionId === id) ? null : id
         })
