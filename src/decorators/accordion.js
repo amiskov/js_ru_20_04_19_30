@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 
-//не возвращая анонимный класс - потом в девтулах путаница будет
-export default Sections => class extends Component {
+export default Sections => class Accordion extends Component {
     state = {
         openSectionId: null
     };
