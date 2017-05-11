@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+//не возвращая анонимный класс - потом в девтулах путаница будет
 export default Sections => class extends Component {
     state = {
         openSectionId: null
