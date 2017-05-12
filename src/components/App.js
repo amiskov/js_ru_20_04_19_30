@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import ArticleList from './ArticleList'
 import Chart from './Chart'
 import UserForm from './UserForm'
+import DateRange from './DateRange'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
+
 
 class App extends Component {
     static propTypes = {
@@ -30,6 +32,7 @@ class App extends Component {
 
         return (
             <div>
+                <DateRange/>
                 <UserForm />
                 <a href = "#" onClick = {this.updateCounter}>update chart</a>
                 <Select options = {options} value = {this.state.selection}
