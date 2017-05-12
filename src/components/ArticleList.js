@@ -24,7 +24,9 @@ function ArticleList({articles, isSectionOpen, toggleSection}) {
 
 ArticleList.propTypes = {
     articles: PropTypes.array,
-    openSectionId: PropTypes.oneOfType([PropTypes.object, PropTypes.string]), // null or string
+
+    // from accordion decorator
+    isSectionOpen: PropTypes.func,
     toggleSection: PropTypes.func
 };
 

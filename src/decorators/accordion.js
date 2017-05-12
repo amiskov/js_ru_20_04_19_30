@@ -16,7 +16,14 @@ export default Sections => class Accordion extends Component {
         )
     }
 
-    isSectionOpen = sectionId => this.state.openSectionId === sectionId;
+    // Инкапсулируем логику в декораторе,
+    // передаем дополнительную функцию для проверки, открыта ли секция
+    isSectionOpen = sectionId => this.state.openSectionId === sectionId; // `this` будет привязан
+
+    // Для лучшего понимания, вариант на ES5
+    // isSectionOpen = function(sectionId) {
+    //     return this.state.openSectionId === sectionId;
+    // }.bind(this)
 
     toggleSection = openSectionId => ev => {
         this.setState({
