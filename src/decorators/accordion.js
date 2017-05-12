@@ -11,13 +11,16 @@ export default Sections => class Accordion extends Component {
                 {...this.props}
                 {...this.state}
                 toggleSection={this.toggleSection}
+                isSectionOpen={this.isSectionOpen}
             />
         )
     }
 
-    toggleSection = id => ev => {
+    isSectionOpen = sectionId => this.state.openSectionId === sectionId;
+
+    toggleSection = openSectionId => ev => {
         this.setState({
-            openSectionId: (this.state.openSectionId === id) ? null : id
+            openSectionId: (this.state.openSectionId === openSectionId) ? null : openSectionId
         })
     }
 }

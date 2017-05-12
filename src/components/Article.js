@@ -2,14 +2,12 @@ import React from 'react'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 
-function Article(props) {
-    const {article, toggleSection} = props;
-
+function Article({article, isOpen, toggleSection}) { // вместо const {article, toggleSection} = props;
     const getBody = () => {
-        return props.isOpen && (
+        return isOpen && (
                 <div>
-                    {props.article.text}
-                    <CommentList comments={props.article.comments}/>
+                    {article.text}
+                    <CommentList comments={article.comments}/>
                 </div>
             )
     };

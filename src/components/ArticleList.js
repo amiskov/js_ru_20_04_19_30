@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import Article from './Article'
 import Accordion from '../decorators/accordion'
 
-function ArticleList(props) {
-    const elements = props.articles.map(
+function ArticleList({articles, isSectionOpen, toggleSection}) {
+    const elements = articles.map(
         article =>
             <li key={article.id}>
                 <Article
                     article={article}
-                    isOpen={article.id === props.openSectionId}
-                    toggleSection={props.toggleSection(article.id)}
+                    isOpen={isSectionOpen(article.id)}
+                    toggleSection={toggleSection(article.id)}
                 />
             </li>
     );
