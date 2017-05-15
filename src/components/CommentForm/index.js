@@ -4,8 +4,8 @@ import './index.less';
 
 class CommentForm extends Component {
     state = {
-        commentUser: '',
-        commentText: ''
+        user: '',
+        text: ''
     };
 
     handleUserChange = ev => {
@@ -16,35 +16,25 @@ class CommentForm extends Component {
         this.validate(ev.target, 'commentText');
     };
 
-    validate = (el, stateItemName) => {
-        const value = el.value;
-
-        //Не лезь в DOM. Я же говорил, что этого стоит избегать, задача писать в декларативном стиле
-        el.style.borderColor = (value.length < 5 && value.length !== 0) ? 'red' : '';
+    handleChange = type => ev => {
+        const {value} = ev.target;
 
         if (value.length > 20) {
-            el.style.borderColor = 'red';
-
-            setTimeout(() => {
-                el.style.borderColor = '';
-            }, 300);
             return;
         }
 
-        const stateObj = {};
-        stateObj[stateItemName] = value;
-
-        this.setState(stateObj);
+        this.setState({
+            [type]: value
+        });
     };
 
     handleFormSubmit = ev => {
         ev.preventDefault();
+        alert('Submitted!')
+    };
 
-        if (this.state.commentUser.length < 5 || this.state.commentText < 5) {
-            alert('Data is not valid!')
-        } else {
-            alert('Data is ok, ready to submit.')
-        }
+    getClassName = type => {
+        return (this.state[type].length && this.state[type].length < 5) ? '_error' : '';
     };
 
     render() {
@@ -52,23 +42,26 @@ class CommentForm extends Component {
             <form className="form" action="#" onSubmit={this.handleFormSubmit}>
                 <div className="form__row">
                     <input
-                        className="form__input"
-                        onChange={this.handleUserChange}
+                        onChange={this.handleChange('user')}
+                        className={'form__input ' + this.getClassName('user')}
                         type="text"
-                        value={this.state.commentUser}
+                        value={this.state.user}
                         placeholder="Enter from 5 to 20 symbols"
                     />
                 </div>
                 <div className="form__row">
                     <textarea
-                        value={this.state.commentText}
-                        className="form__input form__textarea"
-                        onChange={this.handleTextChange}
+                        value={this.state.text}
+                        className={'form__input form__textarea ' + this.getClassName('text')}
+                        onChange={this.handleChange('text')}
                         placeholder="Enter from 5 to 20 symbols"
                     />
                 </div>
                 <div className="form__row">
-                    <button type="submit" className="form__button">Send</button>
+                    <button type="submit"
+                            className="form__button"
+                            disabled={this.state.user.length < 5 || this.state.text.length < 5}
+                    >Send</button>
                 </div>
             </form>
         );
@@ -76,8 +69,8 @@ class CommentForm extends Component {
 }
 
 CommentForm.propTypes = {
-    commentUser: PropTypes.string,
-    commentText: PropTypes.string
+    user: PropTypes.string,
+    text: PropTypes.string
 };
 
 export default CommentForm;
