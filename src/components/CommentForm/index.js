@@ -19,6 +19,7 @@ class CommentForm extends Component {
     validate = (el, stateItemName) => {
         const value = el.value;
 
+        //Не лезь в DOM. Я же говорил, что этого стоит избегать, задача писать в декларативном стиле
         el.style.borderColor = (value.length < 5 && value.length !== 0) ? 'red' : '';
 
         if (value.length > 20) {
