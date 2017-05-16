@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import CommnetList from '../CommentList'
 import PropTypes from 'prop-types'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import {deleteArticle} from '../../AC/articles'
 import './style.css'
 
 class Article extends Component {
@@ -16,11 +17,11 @@ class Article extends Component {
         toggleOpen: PropTypes.func
     }
 
-/*
-    componentWillMount() {
-        console.log('---', 'mounting')
-    }
-*/
+    /*
+        componentWillMount() {
+            console.log('---', 'mounting')
+        }
+    */
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.isOpen != this.props.isOpen
     }
@@ -29,17 +30,23 @@ class Article extends Component {
         console.log('---', 'updating')
     }
 
+    handleDelete = (ev) => {
+        ev.preventDefault();
+        deleteArticle(this.props.article.id)
+    };
+
     render() {
-        const {article, toggleOpen} = this.props
+        const {article, toggleOpen} = this.props;
         return (
             <section>
                 <h2 onClick={toggleOpen}>
                     {article.title}
+                    <a href="#" onClick={this.handleDelete}>Delete</a>
                 </h2>
                 <CSSTransitionGroup
-                    transitionName = "article"
-                    transitionEnterTimeout = {500}
-                    transitionLeaveTimeout = {30000}
+                    transitionName="article"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
                 >
                     {this.getBody()}
                 </CSSTransitionGroup>
@@ -49,11 +56,11 @@ class Article extends Component {
 
     getBody() {
         return this.props.isOpen && (
-            <div>
-                {this.props.article.text}
-                <CommnetList comments={this.props.article.comments}/>
-            </div>
-        )
+                <div>
+                    {this.props.article.text}
+                    <CommnetList comments={this.props.article.comments}/>
+                </div>
+            )
     }
 }
 

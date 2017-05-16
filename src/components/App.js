@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ArticleList from './ArticleList'
+import Container from './Container'
 import Chart from './Chart'
 import UserForm from './UserForm'
 import DateRange from './DateRange'
@@ -39,7 +39,7 @@ class App extends Component {
                         onChange = {this.handleSelectionChange}
                         multi = {true}
                 />
-                <ArticleList articles = {this.props.articles} />
+                <Container/>
                 <Chart articles = {this.props.articles} key={this.state.counter}/>
             </div>
         )
