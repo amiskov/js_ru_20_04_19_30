@@ -8,14 +8,6 @@ class CommentForm extends Component {
         text: ''
     };
 
-    handleUserChange = ev => {
-        this.validate(ev.target, 'commentUser');
-    };
-
-    handleTextChange = ev => {
-        this.validate(ev.target, 'commentText');
-    };
-
     handleChange = type => ev => {
         const {value} = ev.target;
 
@@ -34,7 +26,16 @@ class CommentForm extends Component {
     };
 
     getClassName = type => {
-        return (this.state[type].length && this.state[type].length < 5) ? '_error' : '';
+        return !this.isFieldValid(type) ? '_error' : '';
+    };
+
+    isFieldValid = type => !(this.state[type].length && this.state[type].length < 5);
+
+    isFormValid = () => {
+        return (
+            this.state.user !== '' && this.state.text !== '' &&    // fields are filled
+            this.isFieldValid('user') && this.isFieldValid('text') // fields are valid
+        )
     };
 
     render() {
@@ -60,8 +61,9 @@ class CommentForm extends Component {
                 <div className="form__row">
                     <button type="submit"
                             className="form__button"
-                            disabled={this.state.user.length < 5 || this.state.text.length < 5}
-                    >Send</button>
+                            disabled={!this.isFormValid()}
+                    >Send
+                    </button>
                 </div>
             </form>
         );
