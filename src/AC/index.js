@@ -1,7 +1,16 @@
-export function increment() {
-    const action = {
-        type: 'INCREMENT',
-    };
+import {DELETE_ARTICLE, INCREMENT} from "../constants";
 
-    return action;
+export function increment() {
+    return {
+        type: INCREMENT,
+    };
+}
+
+export function deleteArticle(id) {
+    return {
+        type: DELETE_ARTICLE,
+        payload: {// соглашение, принято передавать именно в объекте `payload`
+            id
+        }
+    };
 }

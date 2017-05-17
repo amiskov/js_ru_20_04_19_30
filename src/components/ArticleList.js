@@ -3,24 +3,26 @@ import {findDOMNode} from 'react-dom'
 import Article from './Article/index'
 import PropTypes from 'prop-types'
 import accordion from '../decorators/accordion'
+import {connect} from 'react-redux'
 
 class ArticleList extends Component {
     componentDidMount() {
-        const ref = this.refs[this.props.articles[0].id]
+        const ref = this.refs[this.props.articles[0].id];
         console.log('---', ref, findDOMNode(ref))
     }
 
 
     render() {
-        const {articles, toggleOpenItem, isItemOpened} = this.props
+        const {articles, toggleOpenItem, isItemOpened} = this.props;
 
         const elements = articles.map(article => <li key={article.id}>
-            <Article article = {article}
-                     isOpen = {isItemOpened(article.id)}
-                     toggleOpen = {toggleOpenItem(article.id)}
-                     ref = {article.id}
+            <Article article={article}
+                     isOpen={isItemOpened(article.id)}
+                     toggleOpen={toggleOpenItem(article.id)}
+                     ref={article.id}
             />
-        </li>)
+        </li>);
+
         return (
             <ul ref={this.getContainerRef}>
                 {elements}
@@ -36,8 +38,10 @@ class ArticleList extends Component {
 ArticleList.propTypes = {
     articles: PropTypes.array,
     //from accordion decorator
-    toggleOpenItem: PropTypes.func.isRequired,
-    isItemOpened: PropTypes.func.isRequired
-}
+    toggleOpenItem: PropTypes.func,
+    isItemOpened: PropTypes.func
+};
 
-export default accordion(ArticleList)
+export default connect((state) => ({
+    articles: state.articles
+}))(accordion(ArticleList))

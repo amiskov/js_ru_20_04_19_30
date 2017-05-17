@@ -1,7 +1,7 @@
 import {createStore} from 'redux'
-import reducer from '../reducer'
+import combinedReducers from '../reducer'
 
-const store = createStore(reducer);
+const store = createStore(combinedReducers);
 
 window.store = store; // чисто потестить
 
