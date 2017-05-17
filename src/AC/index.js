@@ -1,15 +1,24 @@
-import { INCREMENT, DELETE_ARTICLE} from '../constants'
+import {INCREMENT, DELETE_ARTICLE, UPDATE_SELECTION} from '../constants'
 
 export function increment() {
-    const action = {
+    return {
         type: INCREMENT
     }
-    return action
 }
 
 export function deleteArticle(id) {
     return {
         type: DELETE_ARTICLE,
-        payload : { id }
+        payload: {id}
+    }
+}
+
+export function updateSelection(selection) {
+    console.log('from AC: ', selection);
+    return {
+        type: UPDATE_SELECTION,
+        payload: {
+            selection: selection
+        }
     }
 }
