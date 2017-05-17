@@ -5,6 +5,7 @@ import UserForm from './UserForm'
 import DateRange from './DateRange'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
+import Counter from './Counter'
 
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
 
         return (
             <div>
+                <Counter/>
                 <DateRange/>
                 <UserForm />
                 <a href = "#" onClick = {this.updateCounter}>update chart</a>
