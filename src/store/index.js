@@ -3,6 +3,9 @@ import reducer from '../reducer/index'
 import logger from '../middlewares/logger'
 import randomId from '../middlewares/randomId'
 import api from '../middlewares/api'
+import thunk from 'redux-thunk'
+import {routerMiddleware} from 'react-router-redux'
+import history from '../history'
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -12,7 +15,7 @@ const composeEnhancers =
         }) : compose
 
 const enhancer = composeEnhancers(
-    applyMiddleware(randomId, api, logger)
+    applyMiddleware(routerMiddleware(history), thunk, randomId, api, logger)
     // other store enhancers if any
 )
 
